@@ -17,7 +17,7 @@ import './App.css'
  //business logic. Otherwise retain the {} and put a "return" statement
  const App = () => { 
 
-  //const [stories, setStories] = React.useState([]);
+  const [stories, setStories] = React.useState([]);
 
   //useEffect is called:
   //  1. initially when the component renders the first time
@@ -33,11 +33,11 @@ import './App.css'
   //     component. It can be triggered when the component is first 
   //     mounted, but also if one of its values (state, props, derived 
   //     values from state/props) is updated.
-  //  React.useEffect(() => {
-  //   getAsyncStories().then(result => {
-  //      setStories(result.data.stories);
-  //    });
-  //  }, []); 
+    React.useEffect(() => {
+     getAsyncStories().then(result => {
+        setStories(result.data.stories);
+      });
+    }, []); 
 
    const [users, setUsers] = React.useState([]);
    React.useEffect(() => {
@@ -53,6 +53,8 @@ import './App.css'
        <h1> My Fake API</h1>
        <hr />
        <UserList list={users}/>
+       <hr />
+       <List list={stories}/>
      </div>
    );
 }
@@ -95,6 +97,7 @@ const UserList = (props) =>  (
 
 const User = (props) => (
   <li>
+      <span>{props.item.id}</span>
       <span>{props.item.firstName}</span>
       <span>{props.item.lastName}</span>
   </li>
